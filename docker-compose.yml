@@ -1,0 +1,53 @@
+version: "3.6"
+
+services:
+
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  hot-potato:
+    build:
+      context: .
+      target: development
+    image: error-handling
+
+  api:
+    image: error-handling:latest
+    working_dir: /services/api
+    command: ["npm", "run", "start"]
+    container_name: error-handling-api
+    ports:
+      - '3001:3001'
+    volumes:
+      - './services/api/server:/services/api/server:delegated'
+    environment:
+      NODE_ENV: "development"
+      HOST: 0.0.0.0
+      PORT: 3001
+      RMQ_URL: amqp://rabbitmq:5672
+      RMQ_QUEUE: queue
+    depends_on:
+      - rabbitmq
+
+
+  worker:
+    image: error-handling:latest
+    working_dir: /services/worker
+    command: ["npm", "run", "start"]
+    container_name: error-handling-worker
+    ports:
+      - '4001:4001'
+    volumes:
+      - './services/worker/server:/services/worker/server:delegated'
+    environment:
+      NODE_ENV: "development"
+      HOST: 0.0.0.0
+      PORT: 4001
+      RMQ_URL: amqp://rabbitmq:5672
+      RMQ_QUEUE: queue
+    depends_on:
+      - rabbitmq
