@@ -1,3 +1,4 @@
+import {Observable} from "rxjs";
 import {Injectable, ImATeapotException, BadRequestException} from "@nestjs/common";
 import {Client, ClientProxy, Transport, RpcException} from "@nestjs/microservices";
 
@@ -17,7 +18,7 @@ export class ErrorService {
   })
   client: ClientProxy;
 
-  public getHttpError(payload: IPayload): Promise<void> {
+  public getHttpErrorAsPromise(payload: IPayload): Promise<any> {
     console.info(`Got type from api: ${payload.type}`);
     switch (payload.type) {
       case "TEAPOT":
@@ -27,7 +28,27 @@ export class ErrorService {
     }
   }
 
-  public getRpcError(payload: IPayload): Promise<void> {
+  public getRpcErrorAsPromise(payload: IPayload): Promise<any> {
+    console.info(`Got type from api: ${payload.type}`);
+    switch (payload.type) {
+      case "TEAPOT":
+        throw new RpcException(payload.type);
+      default:
+        throw new RpcException("default");
+    }
+  }
+
+  public getHttpErrorAsObservable(payload: IPayload): Observable<any> {
+    console.info(`Got type from api: ${payload.type}`);
+    switch (payload.type) {
+      case "TEAPOT":
+        throw new ImATeapotException();
+      default:
+        throw new BadRequestException();
+    }
+  }
+
+  public getRpcErrorAsObservable(payload: IPayload): Observable<any> {
     console.info(`Got type from api: ${payload.type}`);
     switch (payload.type) {
       case "TEAPOT":

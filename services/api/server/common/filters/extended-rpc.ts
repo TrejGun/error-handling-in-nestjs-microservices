@@ -1,11 +1,19 @@
-import {ArgumentsHost, Catch} from "@nestjs/common";
-import {BaseRpcExceptionFilter, RpcException} from "@nestjs/microservices";
-import {Observable} from "rxjs";
+import {ArgumentsHost, Catch, ExceptionFilter, HttpException} from "@nestjs/common";
+import {BaseExceptionFilter} from "@nestjs/core";
+import {RpcException} from "@nestjs/microservices";
 
-@Catch()
-export class ExtendedRpcExceptionsFilter extends BaseRpcExceptionFilter {
-  catch(exception: unknown, host: ArgumentsHost): Observable<any> {
-    console.info("ExtendedRpcExceptionsFilter", exception instanceof RpcException, exception);
-    return super.catch(exception, host);
+@Catch() // RpcException
+export class ExtendedRpcExceptionsFilter extends BaseExceptionFilter implements ExceptionFilter<RpcException> {
+  catch(exception: unknown, host: ArgumentsHost): void {
+    console.info("ExtendedRpcExceptionsFilter", exception);
+    if (exception instanceof HttpException) {
+      return super.catch(exception, host);
+    } else {
+      // RpcException
+      // @ts-ignore
+      const {error} = exception;
+      // const error = exception.getError();
+      return super.catch(new HttpException(error.message, error.status), host);
+    }
   }
 }

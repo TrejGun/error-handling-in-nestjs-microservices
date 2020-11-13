@@ -8,13 +8,16 @@ import {ApplicationModule} from "./app.module";
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(ApplicationModule);
 
-  app.connectMicroservice({
-    transport: Transport.RMQ,
-    options: {
-      urls: [process.env.RMQ_URL],
-      queue: process.env.RMQ_QUEUE,
+  app.connectMicroservice(
+    {
+      transport: Transport.RMQ,
+      options: {
+        urls: [process.env.RMQ_URL],
+        queue: process.env.RMQ_QUEUE,
+      },
     },
-  });
+    {inheritAppConfig: true},
+  );
 
   await app
     .startAllMicroservicesAsync()

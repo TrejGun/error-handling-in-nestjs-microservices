@@ -12,7 +12,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": false,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "outDir": "./dist",
     "resolveJsonModule": true,
     "rootDirs": ["./server"],
@@ -22,7 +22,8 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": false,
-    "target": "es2017"
+    "target": "es2017",
+    "lib": ["es2020.Promise", "es2015.iterable"]
   },
-  "exclude": ["node_module", "./dist", "./test"]
+  "exclude": ["node_modules", "./dist"]
 }

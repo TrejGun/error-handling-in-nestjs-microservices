@@ -19,3 +19,7 @@ docker-compose -f docker-compose.yml down -v
 ```sh
 docker-compose -f docker-compose.yml up
 ```
+
+
+https://www.architect.io/blog/creating-microservices-nestjs
+https://dev.to/rebellionpay/building-authentication-for-microservices-using-nestjs-1fne
