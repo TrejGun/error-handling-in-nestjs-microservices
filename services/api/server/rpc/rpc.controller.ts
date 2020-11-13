@@ -8,15 +8,27 @@ import {ExtendedRpcExceptionsFilter} from "../common/filters";
 export class RpcController {
   constructor(private rpcService: RpcService) {}
 
-  @Get("/promise/extended/:type")
+  @Get("/promise/http/:type")
   @UseFilters(ExtendedRpcExceptionsFilter)
-  public extendedPromise(@Param("type") type: string): Promise<any> {
+  public getHttpErrorAsPromise(@Param("type") type: string): Promise<any> {
     return this.rpcService.getHttpErrorAsPromise(type);
   }
 
-  @Get("/observable/extended/:type")
+  @Get("/observable/http/:type")
   @UseFilters(ExtendedRpcExceptionsFilter)
-  public extendedObservable(@Param("type") type: string): Observable<any> {
+  public getHttpErrorAsObservable(@Param("type") type: string): Observable<any> {
     return this.rpcService.getHttpErrorAsObservable(type);
+  }
+
+  @Get("/promise/rpc/:type")
+  @UseFilters(ExtendedRpcExceptionsFilter)
+  public getRpcErrorAsPromise(@Param("type") type: string): Promise<any> {
+    return this.rpcService.getRpcErrorAsPromise(type);
+  }
+
+  @Get("/observable/rpc/:type")
+  @UseFilters(ExtendedRpcExceptionsFilter)
+  public getRpcErrorAsObservable(@Param("type") type: string): Observable<any> {
+    return this.rpcService.getRpcErrorAsObservable(type);
   }
 }

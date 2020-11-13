@@ -12,8 +12,15 @@ export class ExtendedRpcExceptionsFilter extends BaseExceptionFilter implements 
       // RpcException
       // @ts-ignore
       const {error} = exception;
-      // const error = exception.getError();
-      return super.catch(new HttpException(error.message, error.status), host);
+      if (error) {
+        // wrapped HttpException
+        // const error = exception.getError();
+        return super.catch(new HttpException(error.message, error.status), host);
+      } else {
+        // RpcException
+        // @ts-ignore
+        return super.catch(new HttpException(exception.message, 500), host);
+      }
     }
   }
 }
