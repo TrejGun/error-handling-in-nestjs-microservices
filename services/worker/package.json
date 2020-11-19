@@ -18,7 +18,7 @@
     "express": "4.17.1",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.6.3",
-    "typescript": "4.0.5"
+    "typescript": "4.1.2"
   },
   "description": "microservice",
   "devDependencies": {
