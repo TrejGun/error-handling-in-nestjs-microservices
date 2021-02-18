@@ -1,1 +1,1 @@
-export * from "./http-to-rpc";
+export * from "./global.http";

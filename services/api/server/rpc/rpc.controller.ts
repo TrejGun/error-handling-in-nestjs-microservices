@@ -1,34 +1,32 @@
-import {Controller, Get, Param, UseFilters} from "@nestjs/common";
+import {Controller, Get, UseFilters} from "@nestjs/common";
 import {Observable} from "rxjs";
 
 import {RpcService} from "./rpc.service";
-import {ExtendedRpcExceptionsFilter} from "../common/filters";
+import {LocalRpcExceptionFilter} from "../common/filters";
 
 @Controller("/rpc")
 export class RpcController {
   constructor(private rpcService: RpcService) {}
 
-  @Get("/promise/http/:type")
-  @UseFilters(ExtendedRpcExceptionsFilter)
-  public getHttpErrorAsPromise(@Param("type") type: string): Promise<any> {
-    return this.rpcService.getHttpErrorAsPromise(type);
+  @Get("/default")
+  public getDefaultRpcExceptionAsObservable(): Observable<any> {
+    return this.rpcService.getDefaultRpcExceptionAsObservable();
   }
 
-  @Get("/observable/http/:type")
-  @UseFilters(ExtendedRpcExceptionsFilter)
-  public getHttpErrorAsObservable(@Param("type") type: string): Observable<any> {
-    return this.rpcService.getHttpErrorAsObservable(type);
+  @Get("/default-promise")
+  public getDefaultRpcExceptionAsPromise(): Promise<any> {
+    return this.rpcService.getDefaultRpcExceptionAsPromise();
   }
 
-  @Get("/promise/rpc/:type")
-  @UseFilters(ExtendedRpcExceptionsFilter)
-  public getRpcErrorAsPromise(@Param("type") type: string): Promise<any> {
-    return this.rpcService.getRpcErrorAsPromise(type);
+  @Get("/custom")
+  @UseFilters(LocalRpcExceptionFilter)
+  public getCustomRpcExceptionAsObservable(): Observable<any> {
+    return this.rpcService.getCustomRpcExceptionAsObservable();
   }
 
-  @Get("/observable/rpc/:type")
-  @UseFilters(ExtendedRpcExceptionsFilter)
-  public getRpcErrorAsObservable(@Param("type") type: string): Observable<any> {
-    return this.rpcService.getRpcErrorAsObservable(type);
+  @Get("/custom-http")
+  @UseFilters(LocalRpcExceptionFilter)
+  public getDefaultHttpExceptionAsObservable(): Observable<any> {
+    return this.rpcService.getCustomHttpExceptionAsObservable();
   }
 }

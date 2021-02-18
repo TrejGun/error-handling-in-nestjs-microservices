@@ -4,13 +4,13 @@ import {APP_FILTER} from "@nestjs/core";
 
 import {ErrorModule} from "./error/error.module";
 import {HealthModule} from "./health/health.module";
-import {HttpToRpcExceptionFilter} from "./common/filters";
+import {GlobalHttpExceptionFilter} from "./common/filters";
 
 @Module({
   providers: [
     {
       provide: APP_FILTER,
-      useClass: HttpToRpcExceptionFilter,
+      useClass: GlobalHttpExceptionFilter,
     },
   ],
   imports: [HealthModule, ErrorModule],

@@ -1,26 +1,33 @@
-import {Controller, Get, Param, UseFilters} from "@nestjs/common";
-import {HttpService} from "./http.service";
+import {Controller, Get, ImATeapotException, UseFilters} from "@nestjs/common";
 
-import {CustomHttpExceptionFilter, ExtendedHttpExceptionFilter} from "../common/filters";
+import {LocalCustomHttpExceptionFilter, LocalHttpExceptionFilter} from "../common/filters";
 
 @Controller("/http")
 export class HttpController {
-  constructor(private httpService: HttpService) {}
-
-  @Get("/extended/:type")
-  @UseFilters(ExtendedHttpExceptionFilter)
-  public all(@Param("type") type: string): Promise<void> {
-    return this.httpService.getError(type);
+  @Get("/default")
+  public default(): Promise<void> {
+    throw new Error("Simple error");
   }
 
-  @Get("/custom/:type")
-  @UseFilters(CustomHttpExceptionFilter)
-  public rpc(@Param("type") type: string): Promise<void> {
-    return this.httpService.getError(type);
+  @Get("/global")
+  public globalHttp(): Promise<void> {
+    throw new ImATeapotException();
   }
 
-  @Get("/skipped/:type")
-  public any(@Param("type") type: string): Promise<void> {
-    return this.httpService.getError(type);
+  @Get("/local")
+  @UseFilters(LocalHttpExceptionFilter)
+  public localHttp(): Promise<void> {
+    throw new ImATeapotException();
+  }
+
+  @Get("/global-custom")
+  public globalCustomHttp(): Promise<void> {
+    throw new ImATeapotException();
+  }
+
+  @Get("/local-custom")
+  @UseFilters(LocalCustomHttpExceptionFilter)
+  public localCustomHttp(): Promise<void> {
+    throw new ImATeapotException();
   }
 }

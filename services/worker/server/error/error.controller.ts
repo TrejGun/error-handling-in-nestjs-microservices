@@ -1,30 +1,21 @@
-import {Controller} from "@nestjs/common";
-import {MessagePattern, Payload} from "@nestjs/microservices";
+import {Controller, ImATeapotException} from "@nestjs/common";
+import {MessagePattern, RpcException} from "@nestjs/microservices";
 import {Observable} from "rxjs";
-
-import {IPayload, ErrorService} from "./error.service";
 
 @Controller()
 export class ErrorController {
-  constructor(private potatoService: ErrorService) {}
-
-  @MessagePattern("GET_HTTP_ERROR_AS_PROMISE")
-  public getHttpErrorAsPromise(@Payload() payload: IPayload): Promise<any> {
-    return this.potatoService.getHttpErrorAsPromise(payload);
+  @MessagePattern("GET_RPC_EXCEPTION_AS_PROMISE")
+  public getRpcExceptionAsPromise(): Promise<any> {
+    throw new RpcException("RPC Exception");
   }
 
-  @MessagePattern("GET_RPC_ERROR_AS_PROMISE")
-  public getRpcErrorAsPromise(@Payload() payload: IPayload): Promise<any> {
-    return this.potatoService.getRpcErrorAsPromise(payload);
+  @MessagePattern("GET_RPC_EXCEPTION_AS_OBSERVABLE")
+  public getRpcExceptionAsObservable(): Observable<any> {
+    throw new RpcException("RPC Exception");
   }
 
-  @MessagePattern("GET_HTTP_ERROR_AS_OBSERVABLE")
-  public getHttpErrorAsObservable(@Payload() payload: IPayload): Observable<any> {
-    return this.potatoService.getHttpErrorAsObservable(payload);
-  }
-
-  @MessagePattern("GET_RPC_ERROR_AS_OBSERVABLE")
-  public getRpcErrorAsObservable(@Payload() payload: IPayload): Observable<any> {
-    return this.potatoService.getRpcErrorAsObservable(payload);
+  @MessagePattern("GET_HTTP_EXCEPTION_AS_OBSERVABLE")
+  public getHttpExceptionAsObservable(): Observable<any> {
+    throw new ImATeapotException("HTTP Exception");
   }
 }
