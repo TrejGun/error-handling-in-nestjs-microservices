@@ -10,7 +10,7 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   const options = new DocumentBuilder()
-    .setTitle("Hot Potato API")
+    .setTitle("Error Handling API")
     .setDescription("API description")
     .setVersion("1.0")
     .build();

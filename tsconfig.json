@@ -15,7 +15,7 @@
     "noUnusedParameters": true,
     "outDir": "./dist",
     "resolveJsonModule": true,
-    "rootDirs": ["./src", "./server", "./client"],
+    "rootDirs": ["./src"],
     "skipLibCheck": true,
     "sourceMap": true,
     "strictBindCallApply": true,
@@ -24,5 +24,5 @@
     "strictPropertyInitialization": false,
     "target": "es2017"
   },
-  "exclude": ["node_module", "./dist", "./test"]
+  "exclude": ["node_module", "dist"]
 }
