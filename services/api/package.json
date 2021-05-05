@@ -17,7 +17,7 @@
     "amqplib": "0.7.1",
     "class-transformer": "0.4.0",
     "class-validator": "0.13.1",
-    "dotenv": "8.4.0",
+    "dotenv": "8.5.1",
     "express": "4.17.1",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.6.7",
