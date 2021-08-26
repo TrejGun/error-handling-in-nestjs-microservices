@@ -12,13 +12,13 @@
     "@nestjs/microservices": "7.6.18",
     "@nestjs/platform-express": "7.6.18",
     "@nestjs/terminus": "7.2.0",
-    "amqp-connection-manager": "3.4.4",
+    "amqp-connection-manager": "3.5.2",
     "amqplib": "0.8.0",
     "dotenv": "8.6.0",
     "express": "4.17.1",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.6.7",
-    "typescript": "4.3.5"
+    "typescript": "4.4.2"
   },
   "description": "microservice",
   "devDependencies": {
