@@ -4,7 +4,6 @@ import {ClientsModule, Transport} from "@nestjs/microservices";
 import {RpcService} from "./rpc.service";
 import {ErrorHandlingProxy} from "./rpc.proxy";
 
-
 describe("UserService", () => {
   let service: RpcService;
 

@@ -5,6 +5,7 @@ import {BaseExceptionFilter} from "@nestjs/core";
 export class LocalCustomHttpExceptionFilter extends BaseExceptionFilter<ImATeapotException> {
   catch(exception: ImATeapotException, host: ArgumentsHost): any {
     console.info("LocalCustomHttpExceptionFilter", exception);
+    // eslint-disable-next-line promise/valid-params
     return super.catch(exception, host);
   }
 }

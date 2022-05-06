@@ -5,6 +5,7 @@ import {BaseExceptionFilter} from "@nestjs/core";
 export class GlobalHttpExceptionFilter extends BaseExceptionFilter<HttpException> {
   catch(exception: HttpException, host: ArgumentsHost): any {
     console.info("GlobalHttpExceptionFilter", exception);
+    // eslint-disable-next-line promise/valid-params
     return super.catch(exception, host);
   }
 }

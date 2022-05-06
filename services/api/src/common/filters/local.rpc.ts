@@ -6,6 +6,7 @@ import {RpcException} from "@nestjs/microservices";
 export class LocalRpcExceptionFilter extends BaseExceptionFilter {
   catch(exception: RpcException, host: ArgumentsHost): any {
     console.info("LocalRpcExceptionFilter", exception);
+    // eslint-disable-next-line promise/valid-params
     return super.catch(new HttpException(exception.message, 777), host);
   }
 }

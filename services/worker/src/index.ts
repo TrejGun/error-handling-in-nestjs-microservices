@@ -4,7 +4,6 @@ import {NestExpressApplication} from "@nestjs/platform-express";
 
 import {ApplicationModule} from "./app.module";
 
-
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(ApplicationModule);
 
