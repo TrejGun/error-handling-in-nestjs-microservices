@@ -19,17 +19,17 @@
     "express": "4.18.2",
     "reflect-metadata": "0.1.13",
     "rxjs": "7.8.1",
-    "typescript": "5.1.6"
+    "typescript": "5.2.2"
   },
   "description": "microservice",
   "devDependencies": {
     "@nestjs/testing": "10.2.1",
     "@gemunion/eslint-config": "4.0.5",
     "@types/express": "4.17.17",
-    "@types/node": "18.17.9",
+    "@types/node": "18.17.11",
     "@typescript-eslint/eslint-plugin": "6.4.1",
     "@typescript-eslint/parser": "6.4.1",
-    "eslint": "8.47.0",
+    "eslint": "8.48.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-config-standard": "17.1.0",
     "eslint-import-resolver-typescript": "3.6.0",
