@@ -16,10 +16,10 @@
     "amqp-connection-manager": "4.1.14",
     "amqplib": "0.10.4",
     "dotenv": "16.4.5",
-    "express": "4.19.2",
+    "express": "4.21.0",
     "reflect-metadata": "0.2.2",
     "rxjs": "7.8.1",
-    "typescript": "5.5.4"
+    "typescript": "5.6.2"
   },
   "description": "microservice",
   "devDependencies": {
@@ -38,7 +38,7 @@
     "eslint-plugin-n": "14.0.0",
     "eslint-plugin-prettier": "5.2.1",
     "eslint-plugin-promise": "6.6.0",
-    "eslint-plugin-react": "7.35.2",
+    "eslint-plugin-react": "7.36.1",
     "eslint-plugin-react-hooks": "4.6.2",
     "tsc-watch": "6.2.0"
   },
