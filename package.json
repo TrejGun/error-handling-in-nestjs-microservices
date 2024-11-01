@@ -9,7 +9,8 @@
     "lerna": "8.1.9"
   },
   "devDependencies": {
-    "husky": "4.3.8",
+    "@ethberry/eslint-config": "5.0.4",
+    "husky": "9.1.6",
     "lint-staged": "15.2.10",
     "prettier": "3.3.3"
   },
@@ -30,7 +31,8 @@
     "precommit": "lint-staged",
     "prettier": "prettier \"services/**/*.{ts,tsx}\" --write",
     "start": "lerna exec --parallel --scope @error-handling-in-nestjs-microservices/api --scope @error-handling-in-nestjs-microservices/worker -- npm start",
-    "test": "lerna exec --parallel -- npm run test"
+    "test": "lerna exec --parallel -- npm run test",
+    "prepare": "husky"
   },
   "version": "0.0.1"
 }
