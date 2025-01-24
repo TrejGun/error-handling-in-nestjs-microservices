@@ -1,5 +1,6 @@
 import {Module} from "@nestjs/common";
 import {ClientsModule, Transport} from "@nestjs/microservices";
+import {ConfigModule, ConfigService} from "@nestjs/config";
 
 import {RpcController} from "./rpc.controller";
 import {RpcService} from "./rpc.service";
@@ -10,24 +11,36 @@ import {ErrorHandlingProxy} from "./rpc.proxy";
     ClientsModule.registerAsync([
       {
         name: "DEFAULT_PROXY_CLIENT",
-        useFactory: () => ({
-          transport: Transport.RMQ,
-          options: {
-            urls: [process.env.RMQ_URL],
-            queue: process.env.RMQ_QUEUE,
-          },
-        }),
+        imports: [ConfigModule],
+        inject: [ConfigService],
+        useFactory: (configService: ConfigService) => {
+          const rmqUrl = configService.get<string>("RMQ_URL", "amqp://localhost:5672");
+          const rmqQueue = configService.get<string>("RMQ_QUEUE", "queue");
+          return {
+            transport: Transport.RMQ,
+            options: {
+              urls: [rmqUrl],
+              queue: rmqQueue,
+            },
+          };
+        },
       },
       {
         name: "CUSTOM_PROXY_CLIENT",
-        useFactory: () => ({
-          customClass: ErrorHandlingProxy,
-          transport: Transport.RMQ,
-          options: {
-            urls: [process.env.RMQ_URL],
-            queue: process.env.RMQ_QUEUE,
-          },
-        }),
+        imports: [ConfigModule],
+        inject: [ConfigService],
+        useFactory: (configService: ConfigService) => {
+          const rmqUrl = configService.get<string>("RMQ_URL", "amqp://localhost:5672");
+          const rmqQueue = configService.get<string>("RMQ_QUEUE", "queue");
+          return {
+            customClass: ErrorHandlingProxy,
+            transport: Transport.RMQ,
+            options: {
+              urls: [rmqUrl],
+              queue: rmqQueue,
+            },
+          };
+        },
       },
     ]),
   ],

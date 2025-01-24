@@ -1,6 +1,8 @@
-import {Controller, ImATeapotException} from "@nestjs/common";
+import {Controller, UseFilters} from "@nestjs/common";
 import {MessagePattern, RpcException} from "@nestjs/microservices";
 import {Observable} from "rxjs";
+
+import {LocalRpcExceptionFilter} from "../common/filters/local.rpc";
 
 @Controller()
 export class ErrorController {
@@ -9,13 +11,9 @@ export class ErrorController {
     throw new RpcException("RPC Exception");
   }
 
+  @UseFilters(LocalRpcExceptionFilter)
   @MessagePattern("GET_RPC_EXCEPTION_AS_OBSERVABLE")
   public getRpcExceptionAsObservable(): Observable<any> {
     throw new RpcException("RPC Exception");
-  }
-
-  @MessagePattern("GET_HTTP_EXCEPTION_AS_OBSERVABLE")
-  public getHttpExceptionAsObservable(): Observable<any> {
-    throw new ImATeapotException("HTTP Exception");
   }
 }

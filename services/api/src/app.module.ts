@@ -1,5 +1,6 @@
 import {Module} from "@nestjs/common";
 import {APP_FILTER} from "@nestjs/core";
+import {ConfigModule} from "@nestjs/config";
 
 import {HealthModule} from "./health/health.module";
 import {RpcModule} from "./rpc/rpc.module";
@@ -21,6 +22,6 @@ import {GlobalCustomExceptionFilter, NativeToHttpExceptionFilter, GlobalHttpExce
       useClass: NativeToHttpExceptionFilter,
     },
   ],
-  imports: [HealthModule, HttpModule, RpcModule],
+  imports: [ConfigModule.forRoot(), HealthModule, HttpModule, RpcModule],
 })
 export class AppModule {}

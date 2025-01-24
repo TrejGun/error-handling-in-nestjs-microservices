@@ -1,8 +1,7 @@
-import {Controller, Get, UseFilters} from "@nestjs/common";
+import {Controller, Get} from "@nestjs/common";
 import {Observable} from "rxjs";
 
 import {RpcService} from "./rpc.service";
-import {LocalRpcExceptionFilter} from "../common/filters";
 
 @Controller("/rpc")
 export class RpcController {
@@ -19,14 +18,7 @@ export class RpcController {
   }
 
   @Get("/custom")
-  @UseFilters(LocalRpcExceptionFilter)
   public getCustomRpcExceptionAsObservable(): Observable<any> {
     return this.rpcService.getCustomRpcExceptionAsObservable();
-  }
-
-  @Get("/custom-http")
-  @UseFilters(LocalRpcExceptionFilter)
-  public getDefaultHttpExceptionAsObservable(): Observable<any> {
-    return this.rpcService.getCustomHttpExceptionAsObservable();
   }
 }

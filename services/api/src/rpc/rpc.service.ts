@@ -5,8 +5,10 @@ import {Observable} from "rxjs";
 @Injectable()
 export class RpcService {
   constructor(
-    @Inject("DEFAULT_PROXY_CLIENT") private defaultClient: ClientProxy,
-    @Inject("CUSTOM_PROXY_CLIENT") private customClient: ClientProxy,
+    @Inject("DEFAULT_PROXY_CLIENT")
+    private defaultClient: ClientProxy,
+    @Inject("CUSTOM_PROXY_CLIENT")
+    private customClient: ClientProxy,
   ) {}
 
   public getDefaultRpcExceptionAsObservable(): Observable<any> {
@@ -19,9 +21,5 @@ export class RpcService {
 
   public getCustomRpcExceptionAsObservable(): Observable<any> {
     return this.customClient.send("GET_RPC_EXCEPTION_AS_OBSERVABLE", {});
-  }
-
-  public getCustomHttpExceptionAsObservable(): Observable<any> {
-    return this.customClient.send("GET_HTTP_EXCEPTION_AS_OBSERVABLE", {});
   }
 }

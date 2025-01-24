@@ -1,12 +1,14 @@
-import "./env";
 import {NestFactory} from "@nestjs/core";
 import {NestExpressApplication} from "@nestjs/platform-express";
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
+import {ConfigService} from "@nestjs/config";
 
 import {AppModule} from "./app.module";
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  const configService = app.get(ConfigService);
 
   const options = new DocumentBuilder()
     .setTitle("Error Handling API")
@@ -16,8 +18,10 @@ async function bootstrap(): Promise<void> {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup("swagger", app, document);
 
-  await app.listen(process.env.PORT, process.env.HOST, () => {
-    console.info(`API server is running on http://${process.env.HOST}:${process.env.PORT}`);
+  const host = configService.get<string>("HOST", "localhost");
+  const port = configService.get<number>("PORT", 3001);
+  await app.listen(port, host, () => {
+    console.info(`API server is running on http://${host}:${port}`);
   });
 }
 
