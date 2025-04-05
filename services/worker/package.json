@@ -20,13 +20,13 @@
     "express": "4.21.2",
     "reflect-metadata": "0.2.2",
     "rxjs": "7.8.2",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "description": "microservice",
   "devDependencies": {
     "@nestjs/testing": "11.0.12",
     "@types/express": "5.0.1",
-    "@types/node": "22.13.14",
+    "@types/node": "22.14.0",
     "tsc-watch": "6.2.1"
   },
   "engines": {
