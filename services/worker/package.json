@@ -8,11 +8,11 @@
     "url": "https://github.com/TrejGun/error-handling-in-nestjs-microservices"
   },
   "dependencies": {
-    "@nestjs/common": "11.1.1",
+    "@nestjs/common": "11.1.2",
     "@nestjs/config": "4.0.2",
-    "@nestjs/core": "11.1.1",
-    "@nestjs/microservices": "11.1.1",
-    "@nestjs/platform-express": "11.1.1",
+    "@nestjs/core": "11.1.2",
+    "@nestjs/microservices": "11.1.2",
+    "@nestjs/platform-express": "11.1.2",
     "@nestjs/terminus": "11.0.0",
     "amqp-connection-manager": "4.1.14",
     "amqplib": "0.10.8",
@@ -24,7 +24,7 @@
   },
   "description": "microservice",
   "devDependencies": {
-    "@nestjs/testing": "11.1.1",
+    "@nestjs/testing": "11.1.2",
     "@types/express": "5.0.2",
     "@types/node": "22.15.23",
     "tsc-watch": "6.3.1"
