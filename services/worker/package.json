@@ -26,7 +26,7 @@
   "devDependencies": {
     "@nestjs/testing": "11.1.2",
     "@types/express": "5.0.2",
-    "@types/node": "22.15.23",
+    "@types/node": "22.15.29",
     "tsc-watch": "6.3.1"
   },
   "engines": {
